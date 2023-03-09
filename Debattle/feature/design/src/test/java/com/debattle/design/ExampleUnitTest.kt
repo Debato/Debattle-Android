@@ -1,4 +1,4 @@
-package com.debattle.login
+package com.debattle.design
 
 import org.junit.Test
 

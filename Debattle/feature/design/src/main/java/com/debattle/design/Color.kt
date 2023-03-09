@@ -1,4 +1,4 @@
-package com.debattle.debattle.ui.theme
+package com.debattle.design
 
 import androidx.compose.ui.graphics.Color
 
@@ -11,3 +11,5 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 val LightPurple = Color(0xFFECECFF)
+val background = Color(0xFFECEBFB)
+val kakao = Color(0xFFF6E10A)
