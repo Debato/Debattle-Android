@@ -10,9 +10,12 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
     }
 }
 rootProject.name = "Debattle"
 include ':app'
 include ':feature:login'
 include ':feature:design'
+include ':feature:home'
+include ':core:data'
