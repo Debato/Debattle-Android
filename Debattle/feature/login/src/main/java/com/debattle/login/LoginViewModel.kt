@@ -34,7 +34,7 @@ class LoginViewModel @Inject constructor(
                 Log.e(TAG, "카카오계정으로 로그인 실패", error)
             } else if (token != null) {
                 Log.i(TAG, "카카오계정으로 로그인 성공 ${token.accessToken}")
-                signUp(token.toString())
+                signUp(token.accessToken)
             }
         }
         UserApiClient.instance.loginWithKakaoAccount(context, callback = callback)
