@@ -3,6 +3,8 @@ package com.debattle.debattle.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.debattle.home.homeRoute
+import com.debattle.home.homeScreen
 import com.debattle.login.navigation.loginRoute
 import com.debattle.login.navigation.loginScreen
 
@@ -10,5 +12,6 @@ import com.debattle.login.navigation.loginScreen
 fun DebattleNavHost(navHostController: NavHostController) {
     NavHost(navController = navHostController, startDestination = loginRoute) {
         loginScreen()
+        homeScreen()
     }
 }

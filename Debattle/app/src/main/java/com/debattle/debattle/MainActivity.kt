@@ -12,7 +12,9 @@ import androidx.navigation.compose.rememberNavController
 import com.debattle.debattle.navigation.DebattleNavHost
 import com.debattle.design.DebattleTheme
 import com.debattle.login.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
