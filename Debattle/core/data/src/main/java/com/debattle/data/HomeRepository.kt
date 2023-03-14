@@ -4,4 +4,6 @@ import com.debattle.network.retrofit.model.Article
 
 interface HomeRepository {
     suspend fun getAllArticles(): List<Article>
+
+    suspend fun signUp(token: String)
 }

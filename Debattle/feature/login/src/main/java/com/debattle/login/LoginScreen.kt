@@ -18,11 +18,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.debattle.design.background
 import com.debattle.design.kakao
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(
+    viewModel: LoginViewModel = hiltViewModel()
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -37,7 +40,7 @@ fun LoginScreen() {
         Spacer(modifier = Modifier.height(65.dp))  // 65
         Text(text = "Debattle은 매일 바뀌는 주제로 사용자분들이 토론을 할 수 있는 공간입니다. 의견을 표현하고 설득하여 랭킹에 이름을 올려보세요!", fontSize = 14.sp, fontWeight = FontWeight.Normal, color = Color.Black, modifier = Modifier.padding(horizontal = 32.dp), textAlign = TextAlign.Center)
         Spacer(modifier = Modifier.height(80.dp)) // 80
-        kakaoButton(LoginViewModel(LocalContext.current))
+        kakaoButton(viewModel)
     }
 }
 

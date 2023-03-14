@@ -7,4 +7,8 @@ import javax.inject.Inject
 class HomeRepositoryImpl @Inject constructor(private val debattleApi: DebattleApi):HomeRepository {
     override suspend fun getAllArticles(): List<Article> =
         debattleApi.getAllArticles()
+
+    override suspend fun signUp(token: String) {
+        debattleApi.signUp(token)
+    }
 }
