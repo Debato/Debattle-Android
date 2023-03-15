@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Scaffold
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -19,56 +20,49 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.debattle.network.retrofit.model.Article
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(
     navigateToPost: () -> Unit,
-//    homeViewModel: HomeViewModel = hiltViewModel()
+    homeViewModel: HomeViewModel = hiltViewModel()
 ) {
-    Scaffold(
-        floatingActionButton = {
-            FloatingActionButton(onClick = { navigateToPost() }) {}
+    val uiState by homeViewModel.uiState.collectAsState()
+
+    LaunchedEffect(Unit) {
+        homeViewModel.getAllArticles()
+    }
+
+    when(uiState) {
+        is HomeUiState.Error -> Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(text = (uiState as HomeUiState.Error).message)
         }
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-
-        ) {
-            var articles: List<Article> = listOf(
-                Article(
-                    articleId = 1,
-                    content = "test",
-                    author = "testa",
-                    like = 2,
-                    agreement = false
-                ),
-                Article(
-                    articleId = 2,
-                    content = "tes2t",
-                    author = "testa1",
-                    like = 5,
-                    agreement = false
-                ),
-                Article(
-                    articleId = 3,
-                    content = "testz",
-                    author = "testaa",
-                    like = 10,
-                    agreement = true
-                )
-            )
-
-            Spacer(modifier = Modifier.height(60.dp))
-            Text(text = "오늘의 주제", fontSize = 40.sp, fontWeight = FontWeight.Bold)
-            Spacer(modifier = Modifier.height(40.dp))
-            ArticleList(articles = articles)
+        HomeUiState.Loading -> Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+            CircularProgressIndicator()
+        }
+        is HomeUiState.Success -> {
+            Scaffold(
+                floatingActionButton = {
+                    FloatingActionButton(onClick = { navigateToPost() }) {}
+                }
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 20.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Spacer(modifier = Modifier.height(60.dp))
+                    Text(text = "오늘의 주제", fontSize = 40.sp, fontWeight = FontWeight.Bold)
+                    Spacer(modifier = Modifier.height(40.dp))
+                    ArticleList(articles = (uiState as HomeUiState.Success).data)
+                }
+            }
         }
     }
+
 }
 
 @Composable
@@ -86,7 +80,7 @@ fun ArticleList(articles: List<Article>) {
                         .padding(horizontal = 10.dp, vertical = 10.dp)
                 ) {
                     Text(
-                        text = article.author,
+                        text = article.title,
                         fontSize = 15.sp,
                         color = Color.White,
                         fontWeight = FontWeight.Bold

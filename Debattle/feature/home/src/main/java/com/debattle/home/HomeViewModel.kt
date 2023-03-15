@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.debattle.domain.GetAllArticleUseCase
 import com.debattle.domain.SignUpUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -13,14 +15,17 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getAllArticleUseCase: GetAllArticleUseCase,
 ) : ViewModel() {
-
-    init {
-        getAllArticles()
-    }
+    private val _uiState = MutableStateFlow<HomeUiState>(HomeUiState.Loading)
+    val uiState = _uiState.asStateFlow()
 
     fun getAllArticles() {
         viewModelScope.launch {
-            getAllArticleUseCase()
+            try {
+                _uiState.value = HomeUiState.Success(getAllArticleUseCase())
+            } catch (e: Exception) {
+                _uiState.value = HomeUiState.Error(e.localizedMessage ?: "알 수 없는 에러")
+            }
+
             Log.d("getall", getAllArticleUseCase().toString())
         }
     }

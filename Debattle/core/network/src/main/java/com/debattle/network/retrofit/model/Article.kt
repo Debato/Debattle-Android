@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 data class Article(
     val articleId: Int,
     val content: String,
-    val author: String,
+    val title: String,
     val like: Int,
     val agreement: Boolean
 )
