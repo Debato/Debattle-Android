@@ -13,3 +13,6 @@ val Pink40 = Color(0xFF7D5260)
 val LightPurple = Color(0xFFECECFF)
 val background = Color(0xFFECEBFB)
 val kakao = Color(0xFFF6E10A)
+
+val red = Color(0xFFFFE1E1)
+val blue = Color(0xFFD1E6FF)

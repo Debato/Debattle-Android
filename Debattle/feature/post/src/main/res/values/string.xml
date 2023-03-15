@@ -1,0 +1,5 @@
+<resources>
+    <string name="agree">찬성</string>
+    <string name="disagree">반대</string>
+    <string name="post">올리기</string>
+</resources>
