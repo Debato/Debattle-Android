@@ -14,8 +14,9 @@ interface DebattleApi {
     @POST("/article")
     suspend fun postArticles(@Field("title") title: String, @Field("content") content: String, @Field("agreement") agreement: Boolean)
 
-    @POST("/article/like/{id}")
+    @POST("/article/like/{articleId}")
     suspend fun updateLikes(@Path("articleId") id: Int)
 
-
+//    @GET("/user/rank")
+//    suspend fun getAllRank(): List<>
 }
