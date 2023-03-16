@@ -9,11 +9,12 @@ import com.debattle.login.navigation.loginScreen
 import com.debattle.post.navigation.PostRoute
 import com.debattle.post.navigation.navigateToPost
 import com.debattle.post.navigation.postScreen
+import com.debattle.rank.navigation.RankRoute
 import com.debattle.rank.navigation.rankScreen
 
 @Composable
 fun DebattleNavHost(navHostController: NavHostController) {
-    NavHost(navController = navHostController, startDestination = homeRoute) {
+    NavHost(navController = navHostController, startDestination = RankRoute) {
         loginScreen()
         homeScreen {
             navHostController.navigateToPost()

@@ -17,6 +17,6 @@ interface DebattleApi {
     @POST("/article/like/{articleId}")
     suspend fun updateLikes(@Path("articleId") id: Int)
 
-//    @GET("/user/rank")
-//    suspend fun getAllRank(): List<>
+    @GET("/user/rank")
+    suspend fun getAllRank(): List<Article>
 }

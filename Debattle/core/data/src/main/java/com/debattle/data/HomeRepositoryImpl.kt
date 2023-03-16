@@ -19,4 +19,8 @@ class HomeRepositoryImpl @Inject constructor(private val debattleApi: DebattleAp
     override suspend fun updateLikes(id: Int) {
         debattleApi.updateLikes(id)
     }
+
+    override suspend fun getAllRank(): List<Article> =
+        debattleApi.getAllRank()
+
 }

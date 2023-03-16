@@ -10,4 +10,6 @@ interface HomeRepository {
     suspend fun postArticles(title: String, content: String, agreement: Boolean)
 
     suspend fun updateLikes(id: Int)
+
+    suspend fun getAllRank(): List<Article>
 }
