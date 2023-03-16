@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.debattle.domain.GetAllArticleUseCase
 import com.debattle.domain.SignUpUseCase
+import com.debattle.domain.UpdateLikesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,6 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getAllArticleUseCase: GetAllArticleUseCase,
+    private val updateLikesUseCase: UpdateLikesUseCase
 ) : ViewModel() {
     private val _uiState = MutableStateFlow<HomeUiState>(HomeUiState.Loading)
     val uiState = _uiState.asStateFlow()
@@ -27,6 +29,12 @@ class HomeViewModel @Inject constructor(
             }
 
             Log.d("getall", getAllArticleUseCase().toString())
+        }
+    }
+
+    fun updateLikes(id: Int) {
+        viewModelScope.launch {
+            updateLikesUseCase(id)
         }
     }
 }

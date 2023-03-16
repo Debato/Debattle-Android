@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/login" />
             <option value="$PROJECT_DIR$/feature/post" />
+            <option value="$PROJECT_DIR$/feature/rank" />
           </set>
         </option>
       </GradleProjectSettings>

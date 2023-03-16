@@ -8,4 +8,6 @@ interface HomeRepository {
     suspend fun signUp(token: String)
 
     suspend fun postArticles(title: String, content: String, agreement: Boolean)
+
+    suspend fun updateLikes(id: Int)
 }

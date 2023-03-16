@@ -66,7 +66,7 @@ fun HomeScreen(
 }
 
 @Composable
-fun ArticleList(articles: List<Article>) {
+fun ArticleList(articles: List<Article>, homeViewModel: HomeViewModel = hiltViewModel()) {
     val clicked = remember { mutableStateListOf<Boolean>() }
 
     articles.forEach { _ -> clicked.add(false) }
@@ -94,6 +94,9 @@ fun ArticleList(articles: List<Article>) {
                     ),
                     contentDescription = null,
                     modifier = Modifier.clickable {
+                        if(!clicked[index]) {
+                            homeViewModel.updateLikes(article.articleId)
+                        }
                         clicked[index] = !clicked[index]
                     }
                 )
