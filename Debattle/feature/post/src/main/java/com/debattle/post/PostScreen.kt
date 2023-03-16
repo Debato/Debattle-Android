@@ -38,9 +38,8 @@ fun PostScreen(
             },
             modifier = modifier
                 .fillMaxWidth()
-//                .padding(10.dp)
                 .background(background)
-                .padding(vertical = 20.dp)
+                .padding(all = 20.dp)
         )
         Row(modifier = modifier.padding(vertical = 15.dp)) {
             Button(
@@ -77,9 +76,8 @@ fun PostScreen(
             },
             modifier = modifier
                 .fillMaxWidth()
-//                .padding(10.dp)
                 .background(background)
-                .padding(vertical = 180.dp)
+                .padding(vertical = 180.dp, horizontal = 20.dp)
         )
         Spacer(modifier = modifier.weight(1f))
         Button(
