@@ -8,6 +8,6 @@ const val loginRoute = "login_route"
 
 fun NavGraphBuilder.loginScreen() {
     composable(route = loginRoute) {
-//        LoginScreen()
+        LoginScreen()
     }
 }

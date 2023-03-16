@@ -35,11 +35,19 @@ fun HomeScreen(
         homeViewModel.getAllArticles()
     }
 
-    when(uiState) {
-        is HomeUiState.Error -> Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+    when (uiState) {
+        is HomeUiState.Error -> Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Text(text = (uiState as HomeUiState.Error).message)
         }
-        HomeUiState.Loading -> Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+        HomeUiState.Loading -> Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             CircularProgressIndicator()
         }
         is HomeUiState.Success -> {
@@ -55,7 +63,23 @@ fun HomeScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Spacer(modifier = Modifier.height(60.dp))
-                    Text(text = "오늘의 주제", fontSize = 40.sp, fontWeight = FontWeight.Bold)
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Start
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.achievement_award_medal_icon),
+                            contentDescription = null,
+                            modifier = Modifier.padding(end = 30.dp),
+                        )
+                    }
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Text(text = "오늘의 주제", fontSize = 40.sp, fontWeight = FontWeight.Bold)
+                    }
                     Spacer(modifier = Modifier.height(40.dp))
                     ArticleList(articles = (uiState as HomeUiState.Success).data)
                 }
@@ -94,7 +118,7 @@ fun ArticleList(articles: List<Article>, homeViewModel: HomeViewModel = hiltView
                     ),
                     contentDescription = null,
                     modifier = Modifier.clickable {
-                        if(!clicked[index]) {
+                        if (!clicked[index]) {
                             homeViewModel.updateLikes(article.articleId)
                         }
                         clicked[index] = !clicked[index]

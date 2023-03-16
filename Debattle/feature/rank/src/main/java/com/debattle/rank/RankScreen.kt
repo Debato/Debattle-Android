@@ -42,7 +42,7 @@ fun RankScreen(
             Column(
                 modifier = modifier
                     .fillMaxSize()
-                    .padding(horizontal = 50.dp)
+                    .padding(horizontal = 30.dp)
             ) {
                 Spacer(modifier = modifier.height(50.dp))
                 Text(text = "오늘의 랭킹", fontWeight = FontWeight.Bold, fontSize = 20.sp)
