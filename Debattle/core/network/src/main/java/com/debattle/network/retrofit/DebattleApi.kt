@@ -1,9 +1,7 @@
 package com.debattle.network.retrofit
 
 import com.debattle.network.retrofit.model.Article
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface DebattleApi {
     @GET("/article")
@@ -11,4 +9,8 @@ interface DebattleApi {
 
     @POST("/user")
     suspend fun signUp(@Header("token") token: String)
+
+    @FormUrlEncoded
+    @POST("/article")
+    suspend fun postArticles(@Field("title") title: String, @Field("content") content: String, @Field("agreement") agreement: Boolean)
 }

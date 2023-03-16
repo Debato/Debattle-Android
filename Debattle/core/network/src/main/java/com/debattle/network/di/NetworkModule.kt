@@ -10,6 +10,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -36,6 +37,9 @@ object NetworkModule {
 
         return OkHttpClient.Builder()
             .addInterceptor(interceptor)
+            .connectTimeout(20, TimeUnit.SECONDS)
+            .readTimeout(20,TimeUnit.SECONDS)
+            .writeTimeout(20, TimeUnit.SECONDS)
             .build()
     }
 

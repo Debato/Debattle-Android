@@ -11,4 +11,8 @@ class HomeRepositoryImpl @Inject constructor(private val debattleApi: DebattleAp
     override suspend fun signUp(token: String) {
         debattleApi.signUp(token)
     }
+
+    override suspend fun postArticles(title: String, content: String, agreement: Boolean) {
+        debattleApi.postArticles(title, content, agreement)
+    }
 }

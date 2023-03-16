@@ -83,7 +83,7 @@ fun PostScreen(
         Button(
             onClick = {
                 if (title.isNotEmpty() && content.isNotEmpty() && isAgreed != null)
-                    viewModel.postArticle()
+                    viewModel.postArticle(title, content, isAgreed!!)
                 else
                     Log.d("check", "빈 칸이 있습니다")
             },
